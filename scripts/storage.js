@@ -1,24 +1,21 @@
 /**
  * Storage Module - MHQ Analysis PWA
- * Handles local persistence of assessment results and user settings.
+ * Handles local persistence of assessment results, user settings, and temporary state.
  */
 
 const STORAGE_KEY = 'mhq_analysis_data';
+const TEMP_KEY = 'mhq_temp_assessment';
 
 export const Storage = {
     /**
      * Retrieves all saved data.
-     * @returns {Object} The complete storage object.
      */
     getData() {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) {
             return {
                 assessments: [],
-                settings: {
-                    theme: 'dark',
-                    language: 'en'
-                }
+                settings: { theme: 'dark', language: 'en' }
             };
         }
         try {
@@ -31,7 +28,6 @@ export const Storage = {
 
     /**
      * Saves an assessment result.
-     * @param {Object} result - { timestamp, rawResponses, scores }
      */
     saveAssessment(result) {
         const data = this.getData();
@@ -41,26 +37,40 @@ export const Storage = {
             ...result
         });
         this._save(data);
+        this.clearTemp(); // Clear temp once saved
     },
 
     /**
      * Gets all historical assessments.
-     * @returns {Array} List of assessment objects.
      */
     getAssessments() {
         return this.getData().assessments || [];
     },
 
     /**
-     * Clears all local data.
+     * Temporary state for mid-assessment recovery.
      */
-    clearAll() {
-        localStorage.removeItem(STORAGE_KEY);
+    saveTemp(state) {
+        localStorage.setItem(TEMP_KEY, JSON.stringify(state));
+    },
+
+    getTemp() {
+        const raw = localStorage.getItem(TEMP_KEY);
+        return raw ? JSON.parse(raw) : null;
+    },
+
+    clearTemp() {
+        localStorage.removeItem(TEMP_KEY);
     },
 
     /**
-     * Internal save helper.
+     * Clears all local data (NFR-1.2).
      */
+    clearAll() {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(TEMP_KEY);
+    },
+
     _save(data) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     }
