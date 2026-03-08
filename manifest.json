@@ -1,0 +1,26 @@
+{
+  "name": "MHQ Analysis - Mental Health Quotient",
+  "short_name": "MHQ Analysis",
+  "description": "Private, offline-first mental wellbeing assessment tool.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a202c",
+  "theme_color": "#3182ce",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle"],
+  "screenshots": []
+}

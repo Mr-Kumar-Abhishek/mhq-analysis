@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHQ Analysis - Mental Health Quotient PWA</title>
+    <meta name="description" content="A private, offline-first PWA for assessing and analyzing your Mental Health Quotient (MHQ).">
+    
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+<body class="theme-dark">
+    <div id="app" class="glass-bg">
+        <header>
+            <nav>
+                <h1 class="logo">MHQ<span>Analysis</span></h1>
+                <div class="nav-links">
+                    <button id="btn-home" class="nav-btn active">Home</button>
+                    <button id="btn-assess" class="nav-btn">Assessment</button>
+                    <button id="btn-history" class="nav-btn">History</button>
+                </div>
+            </nav>
+        </header>
+
+        <main id="main-content">
+            <!-- Dynamic Content Injected Here -->
+            <section id="loading-screen" class="view">
+                <div class="loader"></div>
+                <p>Initializing PWA...</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 MHQ Analysis. 100% Private & Offline-first.</p>
+        </footer>
+    </div>
+
+    <!-- JS Entry Point (ESM) -->
+    <script type="module" src="scripts/app.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registered.'))
+                    .catch(err => console.log('Service Worker registration failed.', err));
+            });
+        }
+    </script>
+</body>
+</html>
