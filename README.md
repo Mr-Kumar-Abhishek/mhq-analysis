@@ -20,11 +20,29 @@ Built using a "no-build" architecture with native web technologies (HTML, CSS, a
 
 ## 📂 Project Structure
 
-- `SRS.md`: Software Requirement Specification.
-- `SDD.md`: Software Design Document.
-- `RUBRICS.md`: Scoring categories and dimensional definitions.
-- `BENCHMARKS.md`: Global population benchmarks and stats.
-- `LICENSE`: Full GNU General Public License v3.0.
+```text
+.
+├── scripts/
+│   ├── app.js            # Main application controller
+│   ├── assessment.js     # Question bank and state management
+│   ├── scoring.js        # MHQ scoring algorithm
+│   ├── storage.js        # Local persistence layer
+│   └── ui.js             # View rendering and SVG charts
+├── styles/
+│   └── index.css         # Glassmorphic design system
+├── icons/
+│   ├── icon-192.png      # PWA icon (192x192)
+│   └── icon-512.png      # PWA icon (512x512)
+├── index.html            # Main entry point
+├── manifest.json         # PWA manifest
+├── sw.js                 # Service worker for offline use
+├── SRS.md                # Software Requirement Specification
+├── SDD.md                # Software Design Document
+├── RUBRICS.md            # Scoring categories & definitions
+├── BENCHMARKS.md         # Global population benchmarks
+├── LICENSE               # GNU GPL v3.0 License
+└── README.md             # Project documentation (this file)
+```
 
 ## 📄 License
 
