@@ -10,11 +10,11 @@ const App = {
     init() {
         console.log('MHQ Analysis PWA - Core Controller Active');
         this.bindEvents();
-        this.renderInitialView();
+        this.checkResume();
+        this.initPWAUpdate();
     },
 
     bindEvents() {
-        // Event Delegation for dynamic content
         document.addEventListener('click', (e) => {
             const id = e.target.id;
 
@@ -26,16 +26,31 @@ const App = {
                 this.renderHistory();
             } else if (id === 'next-question') {
                 this.handleNextQuestion();
+            } else if (id === 'clear-data-btn') {
+                this.handleClearData();
             }
         });
 
-        // Listen for radio changes to enable next button
         document.addEventListener('change', (e) => {
             if (e.target.name && e.target.name.startsWith('q-')) {
                 const btn = document.getElementById('next-question');
                 if (btn) btn.disabled = false;
             }
         });
+    },
+
+    checkResume() {
+        const temp = Storage.getTemp();
+        if (temp) {
+            if (confirm('You have an unfinished assessment. Would you like to resume?')) {
+                Assessment.startNew(temp);
+                this.renderCurrentQuestion();
+                return;
+            } else {
+                Storage.clearTemp();
+            }
+        }
+        this.renderInitialView();
     },
 
     renderInitialView() {
@@ -50,7 +65,7 @@ const App = {
 
     renderCurrentQuestion() {
         const question = Assessment.getCurrentQuestion();
-        const progress = (Assessment.state.currentStep / Assessment.QUESTIONS.length) * 100;
+        const progress = ((Assessment.state.currentStep) / Assessment.QUESTIONS.length) * 100;
         UI.renderQuestion(question, progress);
     },
 
@@ -59,7 +74,9 @@ const App = {
         const selectedRadio = document.querySelector(`input[name="q-${question.id}"]:checked`);
 
         if (selectedRadio) {
-            Assessment.recordResponse(question.id, selectedRadio.value);
+            Assessment.recordResponse(question.id, selectedRadio.value, (state) => {
+                Storage.saveTemp(state); // Save progress (FR-1.2)
+            });
 
             const nextQ = Assessment.next();
             if (nextQ) {
@@ -76,14 +93,23 @@ const App = {
         UI.renderResults(scores);
     },
 
+    handleClearData() {
+        if (confirm('Are you sure you want to clear all assessment history? This cannot be undone.')) {
+            Storage.clearAll();
+            this.renderInitialView();
+        }
+    },
+
     renderHistory() {
         const history = Storage.getAssessments();
-        // Simple history listing for now
         UI.elements.main.innerHTML = `
             <section class="view">
-                <h2>Assessment History</h2>
+                <div class="header-row">
+                    <h2>Assessment History</h2>
+                    ${history.length > 0 ? '<button id="clear-data-btn" class="text-btn">Clear All</button>' : ''}
+                </div>
                 <div class="history-list full">
-                    ${history.map(h => `
+                    ${history.reverse().map(h => `
                         <div class="history-card glass-bg">
                             <div class="h-meta">
                                 <strong>${new Date(h.timestamp).toLocaleString()}</strong>
@@ -94,10 +120,29 @@ const App = {
                             </div>
                         </div>
                     `).join('')}
+                    ${history.length === 0 ? '<p>No assessments recorded yet.</p>' : ''}
                 </div>
             </section>
         `;
         UI._updateNav('btn-history');
+    },
+
+    initPWAUpdate() {
+        // Simple update detection (FR-3.3)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.ready.then(registration => {
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            if (confirm('New version available! Reload to update?')) {
+                                window.location.reload();
+                            }
+                        }
+                    });
+                });
+            });
+        }
     }
 };
 

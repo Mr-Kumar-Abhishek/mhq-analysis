@@ -3,7 +3,7 @@
  * Strategy: Cache-First for static assets, falling back to network.
  */
 
-const CACHE_NAME = 'mhq-analysis-v1';
+const CACHE_NAME = 'mhq-analysis-v2';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',

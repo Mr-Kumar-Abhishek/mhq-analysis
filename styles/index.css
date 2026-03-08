@@ -179,6 +179,29 @@ p {
     filter: grayscale(1);
 }
 
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.text-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition-fast);
+}
+
+.text-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
 /* 6. Assessment Components */
 .question-card {
     margin-top: var(--spacing-md);
@@ -251,6 +274,16 @@ p {
 .result-header {
     text-align: center;
     margin-bottom: var(--spacing-lg);
+}
+
+.viz-container {
+    padding: var(--spacing-md);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+#radar-chart svg {
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2));
 }
 
 .overall-score {
