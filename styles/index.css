@@ -7,8 +7,8 @@
     /* Color Palette */
     --bg-dark: #0f172a;
     --bg-card: rgba(30, 41, 59, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.125);
-    --glass-shadow: rgba(0, 0, 0, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: rgba(0, 0, 0, 0.4);
 
     --primary: #3b82f6;
     --primary-glow: rgba(59, 130, 246, 0.5);
@@ -24,8 +24,8 @@
     /* Spacing & Sizes */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 3.5rem;
+    --spacing-md: 2.5rem;
+    --spacing-lg: 4rem;
     --border-radius: 1.25rem;
 
     /* Animation Speeds */
@@ -41,7 +41,8 @@
 }
 
 body {
-    background-color: var(--bg-dark);
+    background: radial-gradient(circle at top right, #1e293b, #0f172a);
+    background-attachment: fixed;
     color: var(--text-main);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
@@ -116,6 +117,62 @@ nav {
     box-shadow: 0 4px 14px var(--primary-glow);
 }
 
+/* History Component Styles */
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.history-item,
+.history-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: var(--transition-fast);
+}
+
+.history-item:hover,
+.history-card:hover {
+    transform: translateX(5px);
+    border-color: var(--primary);
+}
+
+.badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-accent);
+}
+
+.h-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.h-stats {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat span {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
 /* 4. Views & Content */
 .view {
     flex: 1;
@@ -152,6 +209,17 @@ p {
     color: var(--text-muted);
     font-size: 1.125rem;
     max-width: 600px;
+    margin: 0 auto var(--spacing-md);
+}
+
+.central {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.hero {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
 }
 
 /* 5. Buttons */
@@ -202,11 +270,32 @@ p {
     background: rgba(59, 130, 246, 0.1);
 }
 
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.controls.central {
+    margin-top: var(--spacing-lg);
+}
+
 /* 6. Assessment Components */
 .question-card {
     margin-top: var(--spacing-md);
     padding: var(--spacing-lg);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.question-text {
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+    line-height: 1.3;
 }
 
 .dimension-tag {
@@ -245,6 +334,8 @@ p {
 .radios {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .radios label {
@@ -263,7 +354,8 @@ p {
 .radios input:checked+label {
     background: var(--primary);
     border-color: var(--primary);
-    box-shadow: 0 0 10px var(--primary-glow);
+    box-shadow: 0 0 15px var(--primary-glow);
+    color: white;
 }
 
 .radios input {
@@ -279,7 +371,8 @@ p {
 .viz-container {
     padding: var(--spacing-md);
     text-align: center;
-    margin-bottom: var(--spacing-lg);
+    margin: 0 auto var(--spacing-lg);
+    max-width: 400px;
 }
 
 #radar-chart svg {
@@ -302,6 +395,8 @@ p {
     padding: 0.5rem 1.5rem;
     border-radius: 99px;
     font-weight: 700;
+    display: inline-block;
+    margin-top: var(--spacing-sm);
 }
 
 .dimension-grid {
@@ -373,6 +468,7 @@ footer p {
         margin: 0;
         border-radius: 0;
         min-height: 100vh;
+        padding: var(--spacing-sm);
     }
 
     h2 {
@@ -386,5 +482,16 @@ footer p {
     .nav-btn {
         padding: 0.5rem 0.75rem;
         font-size: 0.875rem;
+    }
+
+    .radios label {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+    }
+
+    .rating-scale {
+        flex-direction: column;
+        gap: var(--spacing-sm);
     }
 }
