@@ -46,7 +46,9 @@ Built using a "no-build" architecture with native web technologies (HTML, CSS, a
 
 ## 📄 License
 
-This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for the full text.
+The source code of this project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for the full text.
+
+The documentation of this project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**. See the [LICENSE-DOCS](LICENSE-DOCS) file for the full text.
 
 ---
 *Created as part of the MHQ Analysis project.*
