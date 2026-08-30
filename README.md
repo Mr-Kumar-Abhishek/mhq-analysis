@@ -44,6 +44,10 @@ Built using a "no-build" architecture with native web technologies (HTML, CSS, a
 └── README.md             # Project documentation (this file)
 ```
 
+## 📊 Project Estimation
+
+A detailed cost estimation has been generated using the Constructive Cost Model (COCOMO). Based on a size of ~1.1 KLOC, the estimated effort is between 2.66 and 4.05 Person-Months, with a development time of ~3.6 to 3.9 Months, depending on the project complexity mode (Organic, Semi-detached, or Embedded). For full details and pricing in USD, see the [COCOMO_ESTIMATION.md](COCOMO_ESTIMATION.md) report.
+
 ## 📄 License
 
 The source code of this project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for the full text.
