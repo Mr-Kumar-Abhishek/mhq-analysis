@@ -56,8 +56,10 @@ The formulas used are:
 
 ## Summary Table
 
-| Mode | Effort (Person-Months) | Time (Months) | Staffing (Persons) | Estimated Cost ($5k USD/mo baseline) |
+*(Note: The estimated costs below have been converted to INR assuming an approximate exchange rate of 1 USD = ₹83.)*
+
+| Mode | Effort (Person-Months) | Time (Months) | Staffing (Persons) | Estimated Cost (INR) |
 |---|---|---|---|---|
-| **Organic** | 2.66 | 3.63 | 0.73 | **$13,300 USD** |
-| **Semi-detached** | 3.35 | 3.83 | 0.88 | **$16,750 USD** |
-| **Embedded** | 4.05 | 3.91 | 1.04 | **$20,250 USD** |
+| **Organic** | 2.66 | 3.63 | 0.73 | **₹1,103,900** |
+| **Semi-detached** | 3.35 | 3.83 | 0.88 | **₹1,390,250** |
+| **Embedded** | 4.05 | 3.91 | 1.04 | **₹1,680,750** |
